@@ -11,6 +11,8 @@ public:
   void setLevel(int level);
   // poll the debounced button; returns true once per press (rising edge)
   bool pollButton();
+  // write independent PWM duties for red/green (0..ledcMaxDuty)
+  void writeBoth(uint32_t redDuty, uint32_t greenDuty);
 
 private:
   int redPin;
@@ -30,9 +32,5 @@ private:
   int ledcChanGreen = 0;
   int ledcChanRed = 1;
   uint32_t ledcMaxDuty = 255;
-  // write independent PWM duties for red/green (0..ledcMaxDuty)
-  void writeBoth(uint32_t redDuty, uint32_t greenDuty);
-  // allow user to set both PWM channels directly
-  void setBothPWM(uint32_t redDuty, uint32_t greenDuty);
   void applyStatic();
 };
